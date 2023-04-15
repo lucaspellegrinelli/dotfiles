@@ -1,0 +1,31 @@
+# Blocks pip in local and conda base env
+chmod -w ~/.local/lib/python*/site-packages
+chmod -w ~/miniconda3/lib/python*/site-packages
+
+# cd into projects
+function cdp() {
+    cd "$(find ~/projects ~/projects/bhub -mindepth 1 -maxdepth 1 -type d | fzf)"
+}
+
+zle -N cdp
+
+# Prevents "conda install" in base envirorment
+function extended_conda(){
+  if [ "${CONDA_PROMPT_MODIFIER-}" = "(base) " ] && [ "$1" = "install" ]; then
+    echo "Not allowed in base"
+  else
+    conda "$@"
+  fi
+}
+
+alias conda=extended_conda
+
+
+# Creates the command 'fpip' to bypass the block
+function fpip() {
+    chmod +w ~/miniconda3/lib/python*/site-packages
+    pip "$@"
+    chmod -w ~/miniconda3/lib/python*/site-packages
+}
+
+zle -N fpip
