@@ -1,6 +1,6 @@
 # Blocks pip in local and conda base env
 chmod -w ~/.local/lib/python*/site-packages
-chmod -w ~/opt/miniconda/lib/python*/site-packages
+chmod -w /opt/miniconda/lib/python*/site-packages
 
 # cd into projects
 function cdp() {
