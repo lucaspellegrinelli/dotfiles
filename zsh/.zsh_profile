@@ -1,6 +1,9 @@
 # Path setting
 export PATH=~/.local/.npm-global/bin:$PATH
 
+# Configuration paths
+export N_PREFIX="$HOME/.local/n"
+
 # cd into projects
 function cdp() {
     cd "$(find ~/projects ~/projects/bhub -mindepth 1 -maxdepth 1 -type d | fzf)"
