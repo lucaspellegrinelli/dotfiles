@@ -1,5 +1,6 @@
 # Path setting
 export PATH=~/.local/.npm-global/bin:$PATH
+export PATH=~/.local/nvim/bin:$PATH
 
 # Configuration paths
 export N_PREFIX="$HOME/.local/n"
