@@ -1,6 +1,5 @@
-# Blocks pip in local and conda base env
-chmod -w ~/.local/lib/python*/site-packages
-chmod -w /opt/miniconda/lib/python*/site-packages
+# Path setting
+export PATH=~/.local/.npm-global/bin:$PATH
 
 # cd into projects
 function cdp() {
@@ -8,6 +7,11 @@ function cdp() {
 }
 
 zle -N cdp
+
+# -------------- PYTHON / MINICONDA CONFIGURATIION --------------
+# Blocks pip in local and conda base env
+chmod -w ~/.local/lib/python*/site-packages
+chmod -w /opt/miniconda/lib/python*/site-packages
 
 # Prevents "conda install" in base envirorment
 function extended_conda(){
@@ -19,7 +23,6 @@ function extended_conda(){
 }
 
 alias conda=extended_conda
-
 
 # Creates the command 'fpip' to bypass the block
 function fpip() {
