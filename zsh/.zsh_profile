@@ -13,8 +13,7 @@ function cdp() {
 zle -N cdp
 
 # -------------- PYTHON / MINICONDA CONFIGURATIION --------------
-# Blocks pip in local and conda base env
-chmod -w ~/.local/lib/python*/site-packages
+# Blocks pip in conda base env
 chmod -w /opt/miniconda/lib/python*/site-packages
 
 # Prevents "conda install" in base envirorment
