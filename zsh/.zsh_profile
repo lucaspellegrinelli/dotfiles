@@ -1,6 +1,6 @@
 # cd into projects
 function cdp() {
-    cd "$(find ~/projects ~/projects/bhub -mindepth 1 -maxdepth 1 -type d | fzf)"
+    cd "$(find ~/projects -mindepth 1 -maxdepth 1 -type d | fzf)"
 }
 
 zle -N cdp
