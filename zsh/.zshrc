@@ -7,6 +7,10 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen theme romkatv/powerlevel10k
 antigen apply
 
+# p10k styling
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-source ~/.zsh_profile # Always keep at last
+# Path setting
+export PATH=~/.local/nvim/bin:$PATH
+
+# source ~/.zsh_profile # Always keep at last
