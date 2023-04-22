@@ -1,4 +1,5 @@
 source ~/.antigen/antigen.sh
+# source ~/.zsh_profile # Always keep at last
 
 antigen use oh-my-zsh
 antigen bundle git
@@ -13,4 +14,7 @@ antigen apply
 # Path setting
 export PATH=~/.local/nvim/bin:$PATH
 
-# source ~/.zsh_profile # Always keep at last
+# NVM configuration
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
