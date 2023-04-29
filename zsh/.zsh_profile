@@ -1,3 +1,15 @@
+# run 'nvim .' if no file/directory is specified
+function nvim() {
+    if [ $# -eq 0 ]; then
+        command nvim .
+    else
+        command nvim "$@"
+    fi
+}
+
+# why vim when you can nvim?
+alias vim=nvim
+
 # cd into projects
 function cdp() {
     cd "$(find ~/projects -mindepth 1 -maxdepth 1 -type d | fzf)"
