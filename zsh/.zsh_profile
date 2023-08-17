@@ -16,28 +16,3 @@ function cdp() {
 }
 
 zle -N cdp
-
-# -------------- PYTHON / MINICONDA CONFIGURATIION --------------
-# Blocks pip in conda base env
-chmod -w ~/.local/lib/python*
-chmod -w /opt/miniconda/lib/python*/site-packages
-
-# Prevents "conda install" in base envirorment
-function extended_conda(){
-  if [ "${CONDA_PROMPT_MODIFIER-}" = "(base) " ] && [ "$1" = "install" ]; then
-    echo "Not allowed in base"
-  else
-    conda "$@"
-  fi
-}
-
-alias conda=extended_conda
-
-# Creates the command 'fpip' to bypass the block
-function fpip() {
-    chmod +w ~/miniconda3/lib/python*/site-packages
-    pip "$@"
-    chmod -w ~/miniconda3/lib/python*/site-packages
-}
-
-zle -N fpip
