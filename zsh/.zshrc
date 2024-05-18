@@ -16,10 +16,14 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Set up Zinit plugins
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
+zinit light starship/starship
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+
+# Start starship
+eval "$(starship init zsh)"
 
 # Load completions
 autoload -Uz compinit && compinit
