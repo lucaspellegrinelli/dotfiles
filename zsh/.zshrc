@@ -14,9 +14,11 @@ zinit light sindresorhus/pure
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
 # Load completions
 autoload -Uz compinit && compinit
+zinit cdreplay -q
 
 # Path setting
 export PATH=~/.local/nvim/bin:$PATH

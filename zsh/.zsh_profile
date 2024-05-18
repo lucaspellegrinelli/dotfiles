@@ -10,6 +10,9 @@ function nvim() {
 # why vim when you can nvim?
 alias vim=nvim
 
+# pretty ls
+alias ls='ls --color=auto'
+
 # fix pip index
 alias fix-pip='pip config set global.index-url https://pypi.org/simple/'
 
@@ -17,5 +20,24 @@ alias fix-pip='pip config set global.index-url https://pypi.org/simple/'
 function cdp() {
     cd "$(find ~/projects ~/projects/bhub -mindepth 1 -maxdepth 1 -type d | fzf)"
 }
-
 zle -N cdp
+
+# better history
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+
+# shell integrations
+eval "$(fzf --zsh)"
