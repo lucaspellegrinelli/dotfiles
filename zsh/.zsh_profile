@@ -10,9 +10,12 @@ function nvim() {
 # why vim when you can nvim?
 alias vim=nvim
 
+# fix pip index
+alias fix-pip='pip config set global.index-url https://pypi.org/simple/'
+
 # cd into projects
 function cdp() {
-    cd "$(find ~/projects -mindepth 1 -maxdepth 1 -type d | fzf)"
+    cd "$(find ~/projects ~/projects/bhub -mindepth 1 -maxdepth 1 -type d | fzf)"
 }
 
 zle -N cdp
