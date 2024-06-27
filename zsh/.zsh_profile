@@ -41,3 +41,38 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # shell integrations
 eval "$(fzf --zsh)"
+
+# update neovim
+nvim_update() {
+    OS=$(uname -s)
+    ARCH=$(uname -m)
+    if [ "$OS" = "Darwin" ]; then
+        NVIM_ARCH="nvim-macos-arm64"
+        echo "Detected macOS"
+    elif [ "$OS" = "Linux" ]; then
+        NVIM_ARCH="nvim-linux64"
+        echo "Detected Linux"
+    else
+        echo "Unsupported OS: $OS"
+        return 1
+    fi
+
+    echo "Downloading Neovim (https://github.com/neovim/neovim/releases/download/nightly/${NVIM_ARCH}.tar.gz)..."
+    mkdir -p /tmp/nvim_download
+    cd /tmp/nvim_download
+    curl -sLO "https://github.com/neovim/neovim/releases/download/nightly/${NVIM_ARCH}.tar.gz"
+
+    echo "Extracting Neovim..."
+    tar xzf "${NVIM_ARCH}.tar.gz"
+    
+    echo "Updating Neovim..."
+    rm -rf ~/.local/nvim
+    mv ./${NVIM_ARCH} ~/.local/nvim
+
+    echo "Cleaning up..."
+    cd ~
+    rm -rf /tmp/nvim_download
+
+    echo "Neovim update completed successfully."
+    echo $(nvim --version | head -n 1)
+}
