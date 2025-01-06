@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Install script to be used on Coder workspaces
+
 CODE_SERVER_BINARY="/tmp/code-server/bin/code-server"
 SETTINGS_FILE="$HOME/.local/share/code-server/User/settings.json"
 KEYBINDINGS_FILE="$HOME/.local/share/code-server/User/keybindings.json"
@@ -7,16 +9,9 @@ MAX_RETRIES=30
 RETRY_INTERVAL=2
 
 ensure_jq_installed() {
-    echo "Checking if jq is installed..."
     if ! command -v jq &> /dev/null; then
-        echo "jq not found. Installing jq..."
-        sudo apt update && sudo apt install -y jq
-        if ! command -v jq &> /dev/null; then
-            echo "Error: jq installation failed. Please install it manually."
-            exit 1
-        fi
-    else
-        echo "jq is already installed."
+        echo "jq not found. Aborting dotfiles installation..."
+        exit 1
     fi
 }
 
@@ -55,8 +50,8 @@ install_extensions() {
 setup_user_files() {
     echo "Setting up user files..."
     mkdir -p "$(dirname "$SETTINGS_FILE")"
-    merge_json "$SETTINGS_FILE" "user_settings.json"
-    merge_json "$KEYBINDINGS_FILE" "keybindings.json"
+    merge_json "$SETTINGS_FILE" "coder/user_settings.json"
+    merge_json "$KEYBINDINGS_FILE" "coder/keybindings.json"
 }
 
 # Main Script
