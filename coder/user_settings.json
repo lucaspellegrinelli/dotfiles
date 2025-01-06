@@ -40,7 +40,10 @@
     "vim.normalModeKeyBindingsNonRecursive": [
       {
         "before": ["leader", "f"],
-        "commands": ["editor.action.formatDocument"]
+        "commands": [
+          "editor.action.organizeImports",
+          "editor.action.formatDocument"
+        ]
       },
       {
         "before": ["leader", "m"],

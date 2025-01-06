@@ -22,7 +22,6 @@ wait_for_code_server() {
             echo "code-server binary is ready."
             return 0
         fi
-        echo "Attempt $i: code-server binary not ready. Retrying in $RETRY_INTERVAL seconds..."
         sleep "$RETRY_INTERVAL"
     done
     echo "Error: code-server binary not found or not executable after $((MAX_RETRIES * RETRY_INTERVAL)) seconds."
@@ -42,7 +41,6 @@ merge_json() {
 }
 
 install_extensions() {
-    echo "Installing extensions..."
     "$CODE_SERVER_BINARY" --install-extension vscodevim.vim
     "$CODE_SERVER_BINARY" --install-extension catppuccin.catppuccin-vsc
 }
