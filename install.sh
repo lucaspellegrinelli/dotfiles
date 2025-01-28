@@ -33,8 +33,13 @@ merge_json() {
     local new_file=$2
 
     if [ -f "$existing_file" ]; then
-        jq -s '.[0] * .[1]' "$existing_file" "$new_file" > "${existing_file}.tmp"
-        mv "${existing_file}.tmp" "$existing_file"
+        if jq -s '.[0] * .[1]' "$existing_file" "$new_file" > "${existing_file}.tmp"; then
+            mv "${existing_file}.tmp" "$existing_file"
+        else
+            echo "Error: Failed to merge JSON files." >&2
+            rm -f "${existing_file}.tmp"
+            return 1
+        fi
     else
         cp "$new_file" "$existing_file"
     fi
