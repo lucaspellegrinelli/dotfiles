@@ -32,8 +32,7 @@ merge_json() {
     local existing_file=$1
     local new_file=$2
 
-    if [ -f "$existing_file" ]; then
-        [ -s "$existing_file" ] || echo '{}' > "$existing_file"
+    if [ -s "$existing_file" ]; then
         if jq -s '.[0] * .[1]' "$existing_file" "$new_file" > "${existing_file}.tmp"; then
             mv "${existing_file}.tmp" "$existing_file"
         else
