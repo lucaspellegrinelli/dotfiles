@@ -37,7 +37,11 @@ merge_json() {
             mv "${existing_file}.tmp" "$existing_file"
         else
             echo "Error: Failed to merge JSON files." >&2
-            rm -f "${existing_file}.tmp"
+            echo "Contents of $existing_file:" >&2
+            cat "$existing_file" >&2
+            echo "" >&2
+            echo "Contents of $new_file:" >&2
+            cat "$new_file" >&2
             return 1
         fi
     else
